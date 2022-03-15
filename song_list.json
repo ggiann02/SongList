@@ -1,0 +1,63 @@
+[
+    {
+        "name": "Livin on a Prayer",
+        "artist": "Bon Jovi",
+        "genre": "Glam Rock/Rock/Arena Rock",
+        "year": "1989"
+    },
+    {
+        "name": "18 and a Life",
+        "artist": "Skid Row",
+        "genre": "Rock",
+        "year": "1989"
+    },
+    {
+        "name": "School",
+        "artist": "Supertramp",
+        "genre": "Folk/Blues/Rock",
+        "year": "1974"
+    },
+    {
+        "name": "Heroes",
+        "artist": "David Bowie",
+        "genre": "Rock/Alternative Indie",
+        "year": "1977"
+    },
+    {
+        "name": "Highway to Hell",
+        "artist": "AC/DC",
+        "genre": "Hard Rock/Arena Rock/Metal/Blues Rock",
+        "year": "1979"
+    },
+    {
+        "name": "Stairway to Heaven",
+        "artist": "Led Zeppelin",
+        "genre": "Hard Rock/Metal",
+        "year": "1971"
+    },
+    {
+        "name": "(I can't get no) satisfaction",
+        "artist": "The Rolling Stones",
+        "genre": "Blues Rock/Hard Rock",
+        "year": "1965"
+    },
+    {
+        "name": "Like a Rolling Stone",
+        "artist": "Bob Dylan",
+        "genre": "Folk",
+        "year": "1965"
+    },
+    {
+        "name": "House of the Rising Sun",
+        "artist": "The Animals",
+        "genre": "60s pop",
+        "year": "1964"
+    },
+    {
+        "name": "Come Together",
+        "artist": "The Beatles",
+        "genre": "Blues Rock/Alternative Indie/Folk/Rock",
+        "year": "1989"
+    }
+    
+]
