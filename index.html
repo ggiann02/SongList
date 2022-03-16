@@ -1,0 +1,159 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>JSON Song List</title>
+    	  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+          <style>
+        table {
+            margin: 0 auto;
+            font-size: large;
+            border: 1px solid black;
+        }
+  
+        h1 {
+            text-align: center;
+            color: #006600;
+            font-size: xx-large;
+            font-family: 'Gill Sans', 
+                'Gill Sans MT', ' Calibri', 
+                'Trebuchet MS', 'sans-serif';
+        }
+  
+        td {
+            background-color: #E4F5D4;
+            border: 1px solid black;
+        }
+  
+        th,
+        td {
+            font-weight: bold;
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+  
+        td {
+            font-weight: lighter;
+        }
+        
+        #data {
+                margin-bottom: 30px;
+        }
+    </style>
+        <script>
+            function getData() {
+
+                var request = new XMLHttpRequest();
+
+                request.open("GET", "https://raw.githubusercontent.com/ggiann02/SongList/main/song_list.json", true);
+
+                request.onreadystatechange = function() {
+                    if ((request.readyState == 4) && (request.status == 200)) {
+
+                        data = request.responseText;
+                        json = JSON.parse(data);
+
+                        document.getElementById("jsondata").innerHTML = data;
+                    }
+                };
+
+                request.send();
+            }
+            function filter_song() { 
+                    var request = new XMLHttpRequest();
+    
+                    // Set the URL for the AJAX request to be the JSON file
+                    request.open("GET", "https://raw.githubusercontent.com/ggiann02/SongList/main/song_list.json", true);
+    
+                    // Set up event handler/callback
+                    request.onreadystatechange = function() {
+                        if ((request.readyState == 4) && (request.status == 200)) {
+                            // Wait for done + success
+                            data = request.responseText;
+                            json = JSON.parse(data);
+    
+                            let x = document.getElementById('filter').value;
+                            var arr = [];
+                            
+                            json.forEach((song) => {
+                                if (song.genre.includes(x)) {
+                                        arr.push(song.name);
+                                }
+                            });
+                            
+                            document.getElementById("data").innerHTML = arr;
+                            
+                        }
+                    };
+    
+                    request.send();  
+                
+            }
+        </script>
+    </head>
+    <body onload="getData()" style="text-align: center">
+            <table id='table'>
+            <!-- HEADING FORMATION -->
+            <tr>
+                <th>Song Name</th>
+                <th>Artist</th>
+                <th>Genre(s)</th>
+                <th>Year</th>
+            </tr>
+  
+            <script>
+                $(document).ready(function () {
+  
+                    // FETCHING DATA FROM JSON FILE
+                    $.getJSON("song_list.json", 
+                            function (obj) {
+                        var song = '';
+  
+                        // ITERATING THROUGH OBJECTS
+                        $.each(obj, function (key, value) {
+  
+                            //CONSTRUCTION OF ROWS HAVING
+                            // DATA FROM JSON OBJECT
+                            song += '<tr>';
+                            song += '<td>' + 
+                                value.name + '</td>';
+  
+                            song += '<td>' + 
+                                value.artist + '</td>';
+  
+                            song += '<td>' + 
+                                value.genre + '</td>';
+  
+                            song += '<td>' + 
+                                value.year + '</td>';
+  
+                            song += '</tr>';
+                        });
+                          
+                        //INSERTING ROWS INTO TABLE 
+                        $('#table').append(song);
+                    });
+                });
+            </script>
+    </table>
+    <br><br>
+        <div id="jsondata"></div>
+        <form>
+            <select id="filter" style="margin-bottom: 50px; margin-top: 50px">
+                    <option value="Glam Rock">Glam Rock</option>
+                    <option value="Rock">Rock</option>
+                    <option value="Arena Rock">Arena Rock</option>
+                    <option value="Folk">Folk</option>
+                    <option value="Blues">Blues</option>
+                    <option value="Alternative Indie">Alternative Indie</option>
+                    <option value="Hard Rock">Hard Rock</option>
+                    <option value="Metal">Metal</option>
+                    <option value="Blues Rock">Blues Rock</option>
+                    <option value="60s pop">60s pop</option>
+            </select>
+            <input type="button" value="Select Genre" onclick="filter_song()">
+        </form>
+        <p>The names of the songs with that genre are: <br></p>
+        <div id="data"></div>
+    </body>
+</html>
